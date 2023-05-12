@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        #task-list {
+            list-style: none;
+            padding: 0;
+        }
+        .task {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: move;
+        }
+        .task-name {
+            outline: none;
+            border: none;
+            background: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: #ccc;
+            padding: 1px;
+        }
+        .day {
+            background: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <input type="month" id="monthPicker" />
+    <div id="calendar"></div>
+    <ul id="task-list">
+        <li class="task">
+            <input class="task-name" type="text" value="Task 1" />
+            <input type="date" value="2023-05-13" />
+        </li>
+        <li class="task">
+            <input class="task-name" type="text" value="Task 2" />
+            <input type="date" value="2023-05-14" />
+        </li>
+        <li class="task">
+            <input class="task-name" type="text" value="Task 3" />
+            <input type="date" value="2023-05-15" />
+        </li>
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+    <script>
+        var taskList = document.getElementById('task-list');
+        new Sortable(taskList, {
+            animation: 150
+        });
+
+        var calendar = document.getElementById('calendar');
+        var date = new Date();
+        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        for (var i = 0; i < firstDay.getDay(); i++) {
+            calendar.innerHTML += '<div class="day"></div>';
+        }
+        for (var i = 1; i <= lastDay.getDate(); i++) {
+            calendar.innerHTML += '<div class="day">' + i + '</div>';
+        }
+    </script>
+</body>
+</html>
