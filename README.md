@@ -1,2 +1,2 @@
 # project1
-Task Manager
+First Try Stock Prediction Algorithm using code from github and adjust it slightly
