@@ -55,23 +55,33 @@
         </li>
     </ul>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
-    <script>
-        var taskList = document.getElementById('task-list');
-        new Sortable(taskList, {
-            animation: 150
-        });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+<script>
+    var taskList = document.getElementById('task-list');
+    new Sortable(taskList, {
+        animation: 150
+    });
 
-        var calendar = document.getElementById('calendar');
-        var date = new Date();
-        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        for (var i = 0; i < firstDay.getDay(); i++) {
-            calendar.innerHTML += '<div class="day"></div>';
-        }
-        for (var i = 1; i <= lastDay.getDate(); i++) {
-            calendar.innerHTML += '<div class="day">' + i + '</div>';
-        }
-    </script>
+    var calendar = document.getElementById('calendar');
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    // Create empty day elements for padding before first day of the month
+    for (var i = 0; i < firstDay.getDay(); i++) {
+        var paddingDay = document.createElement('div');
+        paddingDay.className = 'day';
+        calendar.appendChild(paddingDay);
+    }
+
+    // Create day elements for each day of the month
+    for (var i = 1; i <= lastDay.getDate(); i++) {
+        var dayElement = document.createElement('div');
+        dayElement.className = 'day';
+        dayElement.textContent = i;
+        calendar.appendChild(dayElement);
+    }
+</script>
+
 </body>
 </html>
