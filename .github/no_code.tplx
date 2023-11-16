@@ -1,0 +1,9 @@
+((*- extends 'base.tplx' -*))
+
+% Remove code cells
+((* block code -*))
+((* endblock code *))
+
+% Remove input prompt
+((* block input_group *))
+((* endblock input_group *))
